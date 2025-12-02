@@ -26,18 +26,22 @@ int calculator_main()
     if (choice == 1)
     {
         addition_main();
+        calculator_main();
     }
     else if (choice == 2)
     {
         subtraction_main();
+        calculator_main();
     }
     else if (choice == 3)
     {
         multiplication_main();
+        calculator_main();
     }
     else if (choice == 4)
     {
         division_main();
+        calculator_main();
     }
     else
     {
