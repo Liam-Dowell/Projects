@@ -21,10 +21,6 @@ def get_number_of_dials():
         number_of_dials = int(input(":> "))
     return number_of_dials
 
-# endingOutput = ""
-# for lock in locks:
-#    endingOutput += lock
-
 def get_how_many_to_list():
     print("How many combinations should I generate?")
     number_of_locks = int(input(":> "))
