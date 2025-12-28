@@ -21,7 +21,7 @@ def chat_main():
     while "bye" not in user_input:
         user_input = input(":> ") # Takes input from the user for what they want to chat about.
         user_input = user_input.lower()
-        logs.logs(user_input)
+        logs.create_logs(user_input)
         if "how are you" in user_input:
             print("I'm a robot, I don't feel anything.")
         elif user_input == "hello" or user_input == "hi":
