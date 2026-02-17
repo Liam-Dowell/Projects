@@ -20,9 +20,6 @@ def rsa_encode():
     p = is_prime()
     q = is_prime()
 
-    print(q)
-    print(p)
-
     #make sure they dont equal each other
     while p == q:
         q = 0
@@ -35,28 +32,26 @@ def rsa_encode():
     choice = input(":> ")
     if choice == "n":
         print("Enter your public key you want to use.")
-        public_key = int(input(":> "))
-        e = public_key
+        e_choice = int(input(":> "))
+        e = e_choice
     else:
         e = 65537
-    print("test")
     d = 1
-    mod = False
-    while mod == False:
-        check = e * d % phi
-        if check == 1:
-            mod = True
-        else:
-            d += 1
-    print(d)
+    d = pow(e, -1, phi)
     print("What message do you want to encode")
     m = input(":> ")
     encoded_m = int.from_bytes(m.encode(), "big")
-    print(encoded_m)
-        
+    public_key = (n, e)
+    private_key = (n, d)
+    encrypted = encrypt(encoded_m, public_key)
+    print(encrypted)
 
 def rsa_decode():
-    print("fajfo")
+    print()
+
+def encrypt(encoded_m, public_key):
+    n, e = public_key
+    return pow(encoded_m, e, n)
     
 def is_prime():
     num = randprime(2**127, 2**128)
