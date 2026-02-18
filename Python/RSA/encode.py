@@ -29,7 +29,7 @@ def rsa_encode():
     public_key = (n, e)
     private_key = (n, d)
     encrypted = encrypt(encoded_m, public_key)
-    print(encrypted)
+    print(f"your text was translated into {encrypted}")
     print(n)
 
 def encrypt(encoded_m, public_key):
@@ -37,5 +37,6 @@ def encrypt(encoded_m, public_key):
     return pow(encoded_m, e, n)
     
 def is_prime():
-    num = randprime(2**15, 2**16)
+    num = randprime(2**255, 2**256)
     return num
+

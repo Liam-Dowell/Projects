@@ -1,8 +1,8 @@
 from sympy import randprime
 def rsa_decode():
     i = 2
-    p = 5
-    q = 3
+    p = 0
+    q = 0
     print("What is the n?")
     n = int(input(":> "))
     print("What is the e?")
@@ -12,6 +12,7 @@ def rsa_decode():
 
     while n % i != 0:
         i += 1
+        print(i)
     p = i
     q = int(n / i)
 
