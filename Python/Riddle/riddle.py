@@ -1,3 +1,4 @@
+import random
 def main():
     again = True
     while again == True:
@@ -27,12 +28,30 @@ def give_riddle():
     inFile.close()
 
 def take_riddle():
+    count = 1
     outFile = open("/workspaces/Projects/Python/Riddle/the_riddler.txt", "r")
     riddles = []
     answers = []
     riddle = outFile.readline()
     answer = outFile.readline()
-    while riddle != ''
+    riddle += riddles
+    answer += answers
+    while riddle != '':
+        riddle = outFile.readline()
+        answer = outFile.readline()
+        riddles += riddle
+        answer += answers
+        count += 1
+    i = random.randint(1, count)
+    riddle = riddles[i]
+    answer = answers[i]
+    print(riddle)
+    print("What do you think the answer is?")
+    user_answer = input(":> ")
+    if user_answer == answer:
+        print(f"Correct it was {answer}")
+    else:
+        print(f"Incorrect it was {answer}")
 
 
 
