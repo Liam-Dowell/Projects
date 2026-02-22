@@ -1,4 +1,5 @@
 import random
+
 def main():
     again = True
     while again == True:
@@ -18,7 +19,7 @@ def main():
             print("Error")
 
 def give_riddle():
-    inFile = open("/workspaces/Projects/Python/Riddle/the_riddler.txt", "a")
+    inFile = open("the_riddler.txt", "a")
     print("What is your riddle?")
     riddle = input(":> ")
     print("What is the answer?")
@@ -28,19 +29,19 @@ def give_riddle():
     inFile.close()
 
 def take_riddle():
-    count = 1
-    outFile = open("/workspaces/Projects/Python/Riddle/the_riddler.txt", "r")
+    count = 0
+    outFile = open("the_riddler.txt", "r")
     riddles = []
     answers = []
     riddle = outFile.readline()
     answer = outFile.readline()
-    riddle += riddles
-    answer += answers
+    riddles.append(riddle)
+    answers.append(answer)
     while riddle != '':
         riddle = outFile.readline()
         answer = outFile.readline()
-        riddles += riddle
-        answer += answers
+        riddles.append(riddle)
+        answers.append(answer)
         count += 1
     i = random.randint(1, count)
     riddle = riddles[i]
@@ -53,8 +54,4 @@ def take_riddle():
     else:
         print(f"Incorrect it was {answer}")
 
-
-
-
-    
 main()
