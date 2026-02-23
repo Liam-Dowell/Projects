@@ -35,23 +35,27 @@ def take_riddle():
     answers = []
     riddle = outFile.readline()
     answer = outFile.readline()
-    riddles.append(riddle)
-    answers.append(answer)
-    while riddle != '':
-        riddle = outFile.readline()
-        answer = outFile.readline()
+    if riddle !=  " ":
         riddles.append(riddle)
         answers.append(answer)
-        count += 1
-    i = random.randint(1, count)
-    riddle = riddles[i]
-    answer = answers[i]
-    print(riddle)
-    print("What do you think the answer is?")
-    user_answer = input(":> ")
-    if user_answer == answer:
-        print(f"Correct it was {answer}")
+        while riddle != '':
+            riddle = outFile.readline()
+            answer = outFile.readline()
+            riddles.append(riddle)
+            answers.append(answer)
+            count += 1
+        i = random.randint(1, count)
+        riddle = riddles[i]
+        answer = answers[i]
+        answer = str(answer)
+        print(riddle)
+        print("What do you think the answer is?")
+        user_answer = str(input(":> "))
+        if user_answer in answer:
+            print(f"Correct it was {answer}")
+        else:
+            print(f"Incorrect it was {answer}")
     else:
-        print(f"Incorrect it was {answer}")
+        print("error no jokes")
 
 main()
