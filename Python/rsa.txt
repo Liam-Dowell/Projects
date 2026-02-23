@@ -1,0 +1,100 @@
+import random
+import encode as e
+import decode as d
+
+
+def rsa_main():
+    print("Would you like to decode or encode a message.")
+    print("1. Encode")
+    print("2. Decode")
+    print("3. Quit")
+    choice = int(input(":> "))
+    if choice == 1:
+        e.rsa_encode()
+    elif choice == 2:
+        d.rsa_decode()
+    else:
+        print("Auf wiedersehen")
+
+rsa_main()
+from sympy import randprime
+
+def rsa_encode():
+    #get two random prime numbers
+    p = is_prime()
+    q = is_prime()
+
+    #make sure they dont equal each other
+    while p == q:
+        q = 0
+        q = is_prime()
+    n = p * q
+
+    #do euler's totient 
+    phi = (p - 1)  * (q - 1)
+    print("Do you want to use the default public key 65537(y/n)?")
+    choice = input(":> ")
+    if choice == "n":
+        print("Enter your public key you want to use.")
+        e_choice = int(input(":> "))
+        e = e_choice
+    else:
+        e = 65537
+    d = 1
+    d = pow(e, -1, phi)
+    print("What message do you want to encode")
+    m = input(":> ")
+    encoded_m = int.from_bytes(m.encode(), "big")
+    public_key = (n, e)
+    private_key = (n, d)
+    encrypted = encrypt(encoded_m, public_key)
+    print(f"your text was translated into {encrypted}")
+    print(n)
+
+def encrypt(encoded_m, public_key):
+    n, e = public_key
+    return pow(encoded_m, e, n)
+    
+def is_prime():
+    num = randprime(2**255, 2**256)
+    return num
+
+from sympy import randprime
+def rsa_decode():
+    i = 2
+    p = 0
+    q = 0
+    print("What is the n?")
+    n = int(input(":> "))
+    print("What is the e?")
+    e = int(input(":> "))
+    print("What is the ciphered text?")
+    c = int(input(":> "))
+
+    while n % i != 0:
+        i += 1
+        print(i)
+    p = i
+    q = int(n / i)
+
+    phi = (p - 1) * (q - 1)
+    d = pow(e, -1, phi)
+
+    private_key = (n, d)
+
+    m = decrypt(private_key, c)
+    byte_length = (m.bit_length() + 7) // 8
+    msg_bytes = m.to_bytes(byte_length, 'big')
+    print(m)
+    print(f"The message is {msg_bytes}.")
+
+def decrypt(private_key, c):
+    n, d = private_key
+    m = (c**d) % n
+    return m
+
+
+
+
+
+    
